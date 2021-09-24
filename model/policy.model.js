@@ -20,12 +20,7 @@ class Policy {
   }
 
   save() {
-    // let d = new Date();
-    // let yyyy = d.getFullYear();
-    // let mm = d.getMonth() + 1;
-    // let dd = d.getDate();
-
-    // let createdAtDate = `${yyyy}-${mm}-${dd}`;
+    
 
     let sql = `
     INSERT INTO data_set(
@@ -90,9 +85,20 @@ class Policy {
     return db.execute(sql);
   }
 
-  static findByIdAndUpdate(id) {
-    console.log(id);
-    let sql = `update data_set set  Customer_Gender = '${Policy.Customer_Gender}'  WHERE Policy_id = ${id};`;
+  static findByIdAndUpdate(policy_data) {
+    let sql = `update data_set set Fuel='${policy_data.Fuel}', 
+    VEHICLE_SEGMENT='${policy_data.VEHICLE_SEGMENT}',
+     Premium='${policy_data.Premium}',
+      bodily_injury_liability='${policy_data.bodily_injury_liability}',
+       personal_injury_protection='${policy_data.personal_injury_protection}',
+        property_damage_liability = '${policy_data.property_damage_liability}',
+         collision = '${policy_data.collision}',
+          comprehensive = '${policy_data.comprehensive}',
+           Customer_Gender = '${policy_data.Customer_Gender}',
+            Customer_Income_group = '${policy_data.Customer_Income_group}',
+            Customer_Region = '${policy_data.Customer_Region}',
+             Customer_Marital_status = '${policy_data.Customer_Marital_status}'
+              WHERE Policy_id = ${policy_data.Policy_id};`;
 
     return db.execute(sql);
   }

@@ -10,7 +10,7 @@ router
 
 router.route("/:id").get(policyControllers.getPolicyById);
 router.route("/customer/:id").get(policyControllers.getPolicyByCId);
-router.route("/customers/:id").get(policyControllers.getAllCustomer);
+router.route("/customers/:id").get(policyControllers.getAllPolicyByCustomerId);
 router.route("/:id").patch(policyControllers.getPolicyByIdAndUpdate);
 
 module.exports = router;

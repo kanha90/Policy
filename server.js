@@ -1,9 +1,10 @@
 require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS.ENV SHOULD BE AT TOP
-
+const cors = require('cors')
 const express = require("express");
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json()); // parse json bodies in the request object
 
 // Redirect requests to endpoint starting with /posts to postRoutes.js
@@ -21,5 +22,5 @@ app.use((err, req, res, next) => {
 });
 
 // Listen on pc port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

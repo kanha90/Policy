@@ -10,7 +10,7 @@ exports.getAllPolicy = async (req, res, next) => {
   }
 };
 
-exports.getAllCustomer = async (req, res, next) => {
+exports.getAllPolicyByCustomerId = async (req, res, next) => {
   try {
     let Customer_id = req.params.id
     const [policy, _] = await Policy.findCAll(Customer_id);
@@ -23,6 +23,7 @@ exports.getAllCustomer = async (req, res, next) => {
 
 exports.addNewPolicy = async (req, res, next) => {
   try {
+
     let { Policy_id,
        Date_of_Purchase,
        Customer_id,
@@ -89,16 +90,23 @@ exports.getPolicyByCId = async (req, res, next) => {
 
 exports.getPolicyByIdAndUpdate = async (req, res, next) => {
   try {
-    let Policy_id = req.params.id;
+    console.log(
+      "hi______",req.body);
+    let policy_data = req.body;
+    console.log(policy_data.Policy_id);
+    let previousPolicyData = await Policy.findById(policy_data.Policy_id);
 
-    // let Customer_Gender  = req.body;
-    // let policyC = new Policy(Policy_id)
-    // console.log(policyC);
+    // if(previousPolicyData.Date_of_Purchase !== policy_data.Date_of_Purchase)
+    //   return res.status().json({message: "Policy date can't be changed"})
+
+    if(policy_data.Premium > 100000)
+      return res.status().json({messgae: "Premium can't be greater than 100000"})    
     
 
-    let [policy, _] = await Policy.findByIdAndUpdate(Policy_id);
+    let [policy, _] = await Policy.findByIdAndUpdate(policy_data);
+      console.log(policy);
+    return res.status(200).json({ message:' policy updated successfully' });
 
-    res.status(200).json({ policy: policy[0] });
   } catch (error) {
     next(error);
   }
