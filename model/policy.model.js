@@ -1,7 +1,23 @@
 const db = require("../config/db");
 
 class Policy {
-  constructor(Policy_id, Date_of_Purchase,Customer_id,Fuel,VEHICLE_SEGMENT,Premium,bodily_injury_liability,personal_injury_protection,property_damage_liability,collision,comprehensive,Customer_Gender,Customer_Income_group,Customer_Region,Customer_Marital_status,) {
+  constructor(
+    Policy_id,
+    Date_of_Purchase,
+    Customer_id,
+    Fuel,
+    VEHICLE_SEGMENT,
+    Premium,
+    bodily_injury_liability,
+    personal_injury_protection,
+    property_damage_liability,
+    collision,
+    comprehensive,
+    Customer_Gender,
+    Customer_Income_group,
+    Customer_Region,
+    Customer_Marital_status
+  ) {
     this.Policy_id = Policy_id;
     this.Date_of_Purchase = Date_of_Purchase;
     this.Customer_id = Customer_id;
@@ -20,8 +36,6 @@ class Policy {
   }
 
   save() {
-    
-
     let sql = `
     INSERT INTO data_set(
        Policy_id,
